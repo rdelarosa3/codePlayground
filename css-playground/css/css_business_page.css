@@ -1,0 +1,140 @@
+:root{
+    --main-height: 100vh;
+}
+
+body{
+    margin:0
+}
+.container{
+    width: 100%;
+    display:grid;
+    grid-row-gap: 0;
+    grid-template-rows:.0fr 1fr 1fr 1fr .5fr .5fr;
+    grid-template-areas:
+                    "nav"
+                    "header"
+                    "content1"
+                    "content2"
+                    "content3"
+                    "footer";
+
+}
+nav{
+    position: fixed;
+    grid-area: nav;
+    top: 0;
+    width: 100%;
+    background-color: #e35141;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+}
+nav li a:hover {
+    background-color: #111;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: header;
+    background: #e35141;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+header h1{
+    text-align: center;
+}
+header p{
+    text-align: center;
+}
+header .btn{
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    display: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    justify-content: center;
+    align-self: center;
+    width: 80px;
+    margin: 0 auto;
+
+
+
+
+}
+#content1{
+    grid-area: content1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: whitesmoke;
+    height: var(--main-height);
+
+}
+.cnt-div1{
+    margin-left:10%;
+    flex:1;
+}
+.cnt-div2{
+    margin-right: 10%;
+}
+#content2{
+    grid-area: content2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lightgray;
+    height: var(--main-height);
+}
+#content3{
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: dimgray;
+    grid-area: content3;
+}
+footer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: lightgray;
+    grid-area: footer;
+}
+footer ul{
+    list-style: none;
+}
+footer li {
+    float: left;
+}
+footer li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+}
+footer li a:hover {
+    cursor: pointer;
+}
+footer p{
+    text-align: center;
+}

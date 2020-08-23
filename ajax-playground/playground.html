@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="footer.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+    </head>
+    <body>
+    <h1>AJAX PRACTICE</h1>
+    <h2>1)AJAX simple request</h2>
+    <button id="button">Create Footer
+    </button>
+    <h2>2)AJAX getting info from an object</h2>
+    <button id="getUser">Get user</button>
+    <button id="getUsers">Get users</button>
+    <h3>player</h3><div id="user"></div>
+    <h3>players</h3><div id="users"></div>
+    <h2>3)AJAX External API</h2>
+    <h3>GitHub Users</h3>
+    <button id="getGit">Get GitHub Users</button>
+    <div id="gitUsers"></div>
+    <div id="footerXML">
+    </div>
+    <script>
+        // create event listener
+        document.getElementById('button').addEventListener('click',loadFooter);
+
+        function loadFooter() {
+            // create XHR Object
+            var xhr = new XMLHttpRequest();
+
+            // Open - requestType, url/file, async?
+            xhr.open('Get', 'partial_footer.html', true);
+            
+            xhr.onload = function () {
+                if(this.status === 200){
+                    document.getElementById('footerXML').innerHTML = this.responseText;
+                }else if(this.status === 404){
+                    document.getElementById('footerXML').innerHTML = "not found";
+                }
+            }
+            // Handle Error
+            xhr.onerror = function () {
+                console.log('request Error...')
+            }
+            // Sends request
+            xhr.send();
+        }
+    </script>
+    <script>
+        document.getElementById('getUser').addEventListener('click',loadUser);
+        document.getElementById('getUsers').addEventListener('click',loadUsers);
+
+        function loadUsers() {
+            console.log("getting users");
+            var xhr = new XMLHttpRequest();
+            xhr.open('Get','players.json',true);
+            xhr.onload = function () {
+                if(this.status === 200){
+                    var players = JSON.parse(this.responseText);
+                    var output = '';
+                    players.forEach((player)=> {
+                        output += `
+                            <ul>
+                                <li>${player.name}</li>
+                                <li>${player.cards}</li>
+                                <li>${player.score}</li>
+                                <li>${player.canPlay}</li>
+                            </ul>
+                        `
+                    })
+                    document.getElementById('users').innerHTML = output;
+                }
+            }
+            // Sends request
+            xhr.send();
+        }
+        function loadUser() {
+            console.log("getting user");
+            var xhr = new XMLHttpRequest();
+            xhr.open('Get','player.json',true);
+            xhr.onload = function () {
+                if(this.status === 200){
+                    var player = JSON.parse(this.responseText);
+                    var output = '';
+                    output += `
+                            <ul>
+                                <li>${player.name}</li>
+                                <li>${player.cards}</li>
+                                <li>${player.score}</li>
+                                <li>${player.canPlay}</li>
+                            </ul>
+                    `
+                    document.getElementById('user').innerHTML = output;
+                }
+            }
+            // Sends request
+            xhr.send();
+        }
+    </script>
+    <script>
+        document.getElementById('getGit').addEventListener('click',loadGit);
+        function loadGit() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.github.com/users',true);
+            xhr.onload = function () {
+                  if(this.status === 200){
+                      var users = JSON.parse(this.responseText);
+                      var output = '';
+
+                      users.forEach((user)=>{
+                          output += `
+                            <div class="user">
+                            <img src="${user.avatar_url}" width="70" height="70">
+                            <ul>
+                            <li>ID: ${user.id}</li>
+                            <li>LOGIN: ${user.login}</li>
+                            </ul>
+                            </div>
+                          `;
+                      })
+                      document.getElementById('gitUsers').innerHTML = output;
+                      console.log(users);
+                  }
+            }
+            xhr.send();
+        }
+    </script>
+    </body>
+</html>

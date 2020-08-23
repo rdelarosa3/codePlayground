@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            background: lightgray;
+            margin: 0;
+        }
+        main{
+            text-align: center;
+        }
+        .container{
+            margin-left:5%;
+            margin-right: 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-areas:
+                    "content sidebar";
+            grid-gap: 50px;
+        }
+        #content{
+            grid-area: content;
+            /*display: grid;*/
+            /*grid-template-rows: 1fr 1fr;*/
+
+        }
+        .entries{
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 5px;
+        }
+        #sidebar{
+            grid-area: sidebar;
+        }
+
+        .card {
+            background: white;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+            transition: 0.3s;
+            border-radius: 2px;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .card-title{
+            background: darkgray;
+        }
+        .card-title h2{
+            padding:10px;
+            margin-left: 15px
+        }
+        footer{
+            padding: 40px;
+            background: dimgray;
+            width: 100%;
+            height: 30%;
+            color: whitesmoke;
+        }
+        
+    </style>
+    <title>My Blog</title>
+</head>
+<body>
+    <main>
+        <h1>MY BLOG</h1>
+        <p>Welcome to the blog of <span>unknown</span></p>
+    </main>
+    <div class="container">
+        <div id="content">
+            <div id="blogCard1" class="card">
+                <img src="icons/mountain.png" style="width:100%">
+                <div class="entries">
+                    <h4><b>TITLE HEADING</b></h4>
+                    <h5>Title Description <span>April 7, 2014</span></h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur culpa delectus incidunt necessitatibus, nesciunt odio quidem quis ullam. A alias eaque eveniet minima natus necessitatibus nobis qui repellat soluta voluptas.</p>
+                    <div>
+                        <button>READ MORE >></button>
+                        <p>Comments <span>0</span></p>
+                    </div>
+                </div>
+
+            </div>
+            <div id="blogCard2" class="card">
+                <img src="icons/bridge.png" style="width:100%">
+                <div class="entries">
+                    <h4><b>TITLE HEADING</b></h4>
+                    <h5>Title Description <span>April 7, 2014</span></h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero mollitia quibusdam reiciendis? Ad aut, consectetur deserunt, dolorum eligendi enim eum natus porro quasi quia sunt tempore voluptas? Modi, quis tenetur.</p>
+                    <div>
+                        <button>READ MORE >></button>
+                        <p>Comments <span>0</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="sidebar">
+            <div id="profile" class="card">
+                <img src="icons/profilepic.png" style="width:100%">
+                <div class="entries">
+                    <h4><b>My Name</b></h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quam qui quis quos ullam.
+                        Ab aut eos, et illum iure modi necessitatibus porro ratione? Dolor in ipsam natus nobis rem.</p>
+                </div>
+            </div>
+            <div id="popular" class="card">
+                <div class="card-title">
+                    <h2>Popular Posts</h2>
+                </div>
+                <div class="entries">
+                    <img src="icons/png/001-facebook.png">
+                    <span class="post-title">Lorem</span>
+                    <span class="post-subtitle">Sed Mattis nunc</span>
+                </div>
+                <div class="entries">
+                    <img src="icons/png/001-facebook.png">
+                    <span class="post-title">Lorem</span>
+                    <span class="post-subtitle">Sed Mattis nunc</span>
+                </div>
+                <div class="entries">
+                    <img src="icons/png/001-facebook.png">
+                    <span class="post-title">Lorem</span>
+                    <span class="post-subtitle">Sed Mattis nunc</span>
+                </div>
+                <div class="entries">
+                    <img src="icons/png/001-facebook.png">
+                    <span class="post-title">Lorem</span>
+                    <span class="post-subtitle">Sed Mattis nunc</span>
+                </div>
+            </div>
+            <div id="tags" class="card">
+                <div class="card-title">
+                    <h2>Tags</h2>
+                </div>
+                <div>
+                    <ul>
+                        <li>Travel</li>
+                        <li>New York</li>
+                        <li>London</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div>
+            <button>Previous</button>
+            <button>Next</button>
+        </div>
+        <p>Powered by w3.css</p>
+    </footer>
+</body>
+</html>

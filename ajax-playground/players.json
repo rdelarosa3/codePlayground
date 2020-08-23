@@ -1,0 +1,20 @@
+[
+  {
+    "name": "House",
+    "cards": [],
+    "score": 0,
+    "canPlay": true
+  },
+  {
+    "name": "Player1",
+    "cards": [],
+    "score": 0,
+    "canPlay": true
+  },
+  {
+    "name": "Player2",
+    "cards": [],
+    "score": 0,
+    "canPlay": true
+  }
+]
