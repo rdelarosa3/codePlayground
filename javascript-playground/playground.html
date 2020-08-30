@@ -5,6 +5,22 @@
     <title>Title</title>
 </head>
 <body>
+<form id="createPlayerForm">
+    <input type="radio" name="playercount" value="1">1<br>
+    <input type="radio" name="playercount" value="2">2<br>
+    <input type="radio" name="playercount" value="3">3<br>
+    <label for="email" id="playerEmailInput">Player 1 Email:</label><br>
+    <input id="email" name="email" type="email"><br>
+    <label for="player" id="playerNameInput">Player 1 Name:</label><br>
+    <input id="player" name="player" type="text"><br>
+    <button id="submitForm" type="submit">Enter</button>
+</form>
+<br>
+<button id="startGameBtn">Start Game</button>
+<button id="hitMe">Hit Me</button>
+<button id="stay">Stay</button>
+<h2>Player Score</h2>
+<div id="scoreBoard"></div>
 <!--<script src="fibonacci.js"></script>-->
 <!--<script src="array_practice.js"></script>-->
 <!--<script src="zeros_to_end.js"></script>-->
@@ -15,7 +31,7 @@
 <!--<script src="string_incrementer.js"></script>-->
 <!--<script src="next_bigger.js"></script>-->
 <!--<script src="alphabet_adder.js"></script>-->
-<!--<script src="blackjack.js"></script>-->
+<script src="blackjack.js"></script>
 </body>
 
 

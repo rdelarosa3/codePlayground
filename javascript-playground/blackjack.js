@@ -1,25 +1,58 @@
 const suits = ["spades", "diamonds", "clubs", "hearts"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-let players = [
-    {
-        name: "House",
-        cards: [],
-        score: 0,
-        canPlay: true
-    },
-    {
-        name: "Player1",
-        cards: [],
-        score: 0,
-        canPlay: true
-    },
-    {
-        name: "Player2",
-        cards: [],
-        score: 0,
-        canPlay: true
+const players = [];
+let playerAmount = 0;
+let currentPlayer = 0;
+class Player {
+    constructor(email, name, balance) {
+        this.email = email;
+        this.name = name;
+        this.balance = balance;
+        this.cards = [];
+        this.score = 0;
+        this.canPlay = true;
     }
-];
+    stand(){
+        this.canPlay = false;
+    }
+    hit(){
+        if(this === players[currentPlayer]) {
+            if (this.score <= 21) {
+                this.cards.push(randomCard(currentDeck));
+                this.score = scoreHand(this.cards);
+            }
+            if (this.score > 21) this.canPlay = false;
+            currentPlayer === (players.length - 1) ? currentPlayer = 0 : currentPlayer += 1;
+            setScore();
+            console.log(this);
+        }
+    }
+}
+players[0] = new Player("casino@casino.com","house",Infinity);
+// Set number of players
+[...document.getElementById('createPlayerForm').elements].forEach((input,ind)=>{
+    if(ind<3) input.addEventListener('click',()=>{
+     playerAmount = Number(input.value);
+    })})
+
+// Create players
+let playerCount = 1;
+const createPlayers = (e)=>{
+    e.preventDefault();
+    if(playerAmount>0 && playerCount<=3){
+       players[playerCount] = new Player(
+           document.getElementById('email').value,
+           document.getElementById('player').value,
+           100
+       )
+       playerCount ++;
+       if(playerAmount > 1) document.getElementById('playerNameInput').innerHTML = `Player ${playerCount} Name:`;
+       document.getElementById('player').value = "";
+       document.getElementById('email').value = "";
+       playerAmount--;
+    }
+}
+
 
 // Shuffle a new deck
 const getDeck = ()=> {
@@ -36,7 +69,6 @@ const getDeck = ()=> {
     return deck;
 }
 let currentDeck = getDeck();
-
 // Dealer random card from current deck
 const randomCard = (deck) => {
     let deckIndex = deck.length * Math.random() << 0;
@@ -47,7 +79,6 @@ const randomCard = (deck) => {
 
 // Get score from current hand
 const scoreHand = (cards) => {
-
     let aces = cards.filter((card) => card.Value === "A").length;
     let score = cards.map((card) => {
         if(isNaN(card.Value)) return card === "A" ? 11:10;
@@ -61,32 +92,35 @@ const scoreHand = (cards) => {
     }
     return score;
 }
-
-const hit = (p) => {
-    if(p.score <= 21) {
-        p.cards.push(randomCard(currentDeck));
-        p.score = scoreHand(p.cards);
-    }
-    if(p.score > 21) p.canPlay = false;
-    console.log(`${p.name}: ${p.score}`)
+const setScore = ()=>{
+    let output = '';
+    players.forEach((p,i)=> {
+        output += `
+            <ul>
+                <li>${p.name}</li>
+                <li>Current Hand: ${p.cards.map((c)=>{return c.Value}).join(",")}</li>
+                <li>Score: ${p.score}</li>
+            </ul>
+        `
+    })
+    document.getElementById('scoreBoard').innerHTML = output;
 }
-const stand = (p) => {
-    p.canPlay = false;
-}
-
 // Initial card draw to players
 const initializeGame = () => {
     let cardDraw = 0;
     while (cardDraw < 2) {
-        players.forEach((p) => {
-            hit(p);
+        players.forEach((p)=>{
+            p.hit();
         })
         cardDraw += 1;
     }
+    console.log(players);
 }
-initializeGame();
-
-console.log(players);
+document.getElementById('submitForm').addEventListener('click',createPlayers)
+document.getElementById('startGameBtn').addEventListener('click',initializeGame);
+document.getElementById('hitMe').addEventListener('click',()=>{
+    players[currentPlayer].hit();
+});
 
 
 
